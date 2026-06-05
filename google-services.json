@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "614987403428",
+    "firebase_url": "https://bombeiotc4-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "bombeiotc4",
+    "storage_bucket": "bombeiotc4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614987403428:android:274b5841925a2c36491631",
+        "android_client_info": {
+          "package_name": "com.firegasdetector.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfz_QRHomWuUFAs0catN6cPbZm4ZMkYZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

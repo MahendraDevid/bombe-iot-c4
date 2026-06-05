@@ -1,59 +1,59 @@
 {
-    "users": {
-      "uid_001": {
-        "name": "Mahendra",
-        "email": "mahendra@gmail.com"
-      }
-    },
-  
-    "devices": {
-      "device_001": {
-        "name": "ESP32 Fire Detector",
-        "owner_uid": "uid_001",
-        "camera_enabled": true,
-        "sprinkler_enabled": true,
-        "is_active": true
-      }
-    },
-  
-    "device_members": {
-      "device_001": {
-        "uid_001": true
-      }
-    },
-  
-    "sensor_realtime": {
-      "device_001": {
+  "users": {
+    "GL15baDLhnbZXx2gvbK1dFzMOfb2": {
+      "name": "admin123",
+      "email": "admin@gmail.com"
+    }
+  },
+
+  "devices": {
+    "device_001": {
+      "name": "ESP32 Fire Detector",
+      "owner_uid": "GL15baDLhnbZXx2gvbK1dFzMOfb2",
+      "camera_enabled": true,
+      "sprinkler_enabled": true,
+      "is_active": true
+    }
+  },
+
+  "device_members": {
+    "device_001": {
+      "GL15baDLhnbZXx2gvbK1dFzMOfb2": true
+    }
+  },
+
+  "sensor_realtime": {
+    "device_001": {
+      "gas_value": 0,
+
+      "fire_detected": false,
+      "fire_type": "no_fire",
+      "confidence": 0.0,
+
+      "status": "AMAN",
+
+      "buzzer": false,
+      "relay": false,
+
+      "updated_at": "2026-06-05T20:00:00"
+    }
+  },
+
+  "event_logs": {
+    "device_001": {
+      "log_001": {
         "gas_value": 0,
-  
+
         "fire_detected": false,
         "fire_type": "no_fire",
         "confidence": 0.0,
-  
+
         "status": "AMAN",
-  
-        "buzzer": false,
-        "relay": false,
-  
-        "updated_at": "2026-06-05T20:00:00"
-      }
-    },
-  
-    "event_logs": {
-      "device_001": {
-        "log_001": {
-          "gas_value": 0,
-  
-          "fire_detected": false,
-          "fire_type": "no_fire",
-          "confidence": 0.0,
-  
-          "status": "AMAN",
-  
-          "photo_url": "",
-  
-          "timestamp": "2026-06-05T20:00:00"
-        }
+
+        "photo_url": "",
+
+        "timestamp": "2026-06-05T20:00:00"
       }
     }
   }
+}
