@@ -1,23 +1,23 @@
-# Konteks Proyek IoT - Kelompok 4
+# Konteks Pembaruan Integrasi Proyek - Kelompok 4
 
-## Arsitektur Sistem (Three-Tier)
-- **Tier 1 (Sensing):** ESP32-CAM, Sensor MQ2, Buzzer, Relay, Pompa Sprinkler.
-- **Tier 2 (Processing/Broker):** ESP32-CAM mengirim data berbasis JSON melalui MQTT Protokol ke Broker HiveMQ (`broker.hivemq.com` port `1883`) dengan topik `home/safety/device_001`.
-- **Tier 3 (Application):** Firebase Realtime Database (Server: asia-southeast1) & Aplikasi Android React Native (`com.firegasdetector.app`).
+## Perubahan Sistem Terbaru:
+1. ESP32-CAM sekarang mengirimkan payload JSON tambahan bernama `image_base64` yang berisi data gambar berformat string teks panjang ketika kondisi "BAHAYA".
+2. Ukuran paket data MQTT sekarang jauh lebih besar dari sebelumnya (bisa mencapai ~6 KB hingga ~8 KB).
 
-## Struktur Firebase Realtime Database Target
-URL Database: `https://bombeiotc4-default-rtdb.asia-southeast1.firebasedatabase.app/`
-Data disimpan langsung di bawah node `sensor_realtime/device_001` dengan struktur JSON berikut:
+## Target Tugas untuk Cursor AI:
+Tolong perbarui file `bridge.js` agar memiliki kemampuan berikut:
+1. Menangani payload berukuran besar (menghindari error out of memory saat melakukan parsing string JSON).
+2. Meneruskan seluruh properti termasuk string `image_base64` secara utuh menggunakan HTTP PUT ke Firebase Realtime Database.
+
+## Referensi Struktur JSON Baru dari MQTT:
 {
-  "gas_value": 150,
-  "fire_detected": false,
-  "fire_type": "no_fire",
-  "confidence": 0.05,
-  "status": "AMAN",
-  "buzzer": false,
-  "relay": false,
-  "updated_at": "2026-06-05T23:00:47"
+  "gas_value": 0,
+  "fire_detected": true,
+  "fire_type": "flame",
+  "confidence": 0.85,
+  "status": "BAHAYA",
+  "buzzer": true,
+  "relay": true,
+  "image_base64": "/9j/4AAQSkZJRgABAQEASABIAAD...",
+  "updated_at": "2026-06-07T23:45:00"
 }
-
-## Masalah Saat Ini
-Data dari MQTT Explorer/ESP32-CAM sudah ter-publish ke HiveMQ, tetapi belum otomatis masuk ke Firebase Realtime Database karena membutuhkan script jembatan (bridge) perantara di Tier 2 ke Tier 3.
