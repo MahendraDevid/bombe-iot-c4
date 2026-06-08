@@ -17,11 +17,22 @@ mqttClient.on('connect', () => {
 // Setiap ada data masuk dari MQTT Explorer, langsung oper ke Firebase
 mqttClient.on('message', async (topic, message) => {
     try {
-        console.log(`📩 Menerima Paket dari MQTT: ${message.toString()}`);
-        const payload = JSON.parse(message.toString());
+        const payloadString = message.toString('utf-8');
+        const payload = JSON.parse(payloadString);
+
+        // Menghindari log string base64 yang sangat panjang ke terminal untuk mencegah Lag/OOM
+        const logPayload = { ...payload };
+        if (logPayload.image_base64) {
+            logPayload.image_base64 = `[BASE64_DATA_TRUNCATED] (Len: ${logPayload.image_base64.length})`;
+        }
+        console.log(`📩 Menerima Paket dari MQTT:`, logPayload);
 
         // PUT akan menimpa data lama di Firebase
-        await axios.put(firebaseURL, payload);
+        // Gunakan maxBodyLength & maxContentLength Infinity untuk menghindari limit payload Axios
+        await axios.put(firebaseURL, payload, {
+            maxBodyLength: Infinity,
+            maxContentLength: Infinity
+        });
         console.log('✅ Data Sukses Diteruskan ke Firebase Console!');
     } catch (error) {
         console.error('❌ Gagal mengoper data:', error.message);
